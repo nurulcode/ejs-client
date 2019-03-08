@@ -1,6 +1,6 @@
 'use strict';
 
- module.exports = (app, passport) => {
+module.exports = (app, passport) => {
     //Dashboard
     app.get('/', (req, res, next) => {
         res.render('index');
@@ -8,11 +8,11 @@
 
     //Admin Panel
     app.get('/loginAndRegister', (req, res) => {
-        res.render('loginAndRegister');
+        res.render('loginAndRegister', { message: req.flash('logNreg') });
     });
 
     app.get('/signup', (req, res) => {
-        res.render('loginAndRegister', { message: req.flash('signpMsg') });
+        res.render('loginAndRegister', { message: req.flash('signUpMsg') });
     });
 
     app.post('/signup',
@@ -33,13 +33,22 @@
         failureFlash    : true
     }));
 
-    app.get('/home', (req, res) => {
-        res.render('home');
+    app.get('/home', isLoggedIn, (req, res) => {
+        res.render('home', { user : req.user});
     });
 
-
+    app.get('/logout', isLoggedIn, function(req, res){
+        req.logout();
+        res.redirect('/');
+    });
 
 };
+
+function isLoggedIn(req, res, next) {
+    console.log(req.user)
+    if(req.user) return next();
+    res.redirect('loginAndRegister');
+}
 
 
 //

@@ -10,10 +10,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const request = require('superagent');
 
-
-
 const usersRouter = require('./routes/users');
-
 
 var app = express();
 
@@ -21,14 +18,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({
     secret: 'this is secret',
-    resave: true,
-    saveUninitialized: true
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());

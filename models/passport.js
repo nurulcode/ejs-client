@@ -28,15 +28,44 @@ module.exports = (passport) => {
             .set('Accept', 'application/json')
             .then(res => {
                 if (!res.body.error) {
-                    return done(null, res.body.data);
+                    return done(null, res.body);
                 } else {
-                    return done(null, false, req.flash('registerMessage', res.body.message));
+                    return done(null, false, req.flash('signUpMsg', res.body.message));
                 }
             })
             .catch(err => {
-                if (err) return done(null, false, req.flash('registerMessage', 'Something is wrong, please call your administrator'))
+                if (err) return done(null, false, req.flash('signUpMsg', 'Something is wrong, please call your administrator'))
             })
         });
 
     }))
+
+    passport.use('local-login', new LocalStrategy ({
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true
+    }, (req, email, password, done) => {
+
+        process.nextTick(function(){
+            if (email)
+            email = email.toLowerCase();
+
+            request.post(API_URL + 'users/login')
+            .send({ email, password })
+            .set('Accept', 'application/json')
+            .then(res => {
+                if (!res.body.error) {
+                    return done(null, res.body);
+                } else {
+                    return done(null, false, req.flash('signUpMsg', res.body.message));
+                }
+            })
+            .catch(err => {
+                if (err) return done(null, false, req.flash('signUpMsg', 'Something is wrong, please call your administrator'))
+            })
+        });
+
+    }))
+
+
 };
