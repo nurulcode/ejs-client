@@ -7,29 +7,25 @@ module.exports = (app, passport) => {
     });
 
     //Admin Panel
-    app.get('/loginAndRegister', (req, res) => {
-        res.render('loginAndRegister', { message: req.flash('logNreg') });
+    app.get('/login', (req, res) => {
+        res.render('login', { message: req.flash('signIn') });
     });
 
     app.get('/signup', (req, res) => {
-        res.render('loginAndRegister', { message: req.flash('signUpMsg') });
+        res.render('signup', { message: req.flash('signUpMsg') });
     });
 
     app.post('/signup',
     passport.authenticate('local-signup', {
         successRedirect : '/home',
-        failureRedirect : '/loginAndRegister',
+        failureRedirect : '/signup',
         failureFlash    : true
     }))
-
-    app.get('/login', (req, res) => {
-        res.render('loginAndRegister', { message: req.flash('loginMsg') });
-    });
 
     app.post('/login',
     passport.authenticate('local-login', {
         successRedirect : '/home',
-        failureRedirect : '/loginAndRegister',
+        failureRedirect : '/login',
         failureFlash    : true
     }));
 
@@ -47,7 +43,7 @@ module.exports = (app, passport) => {
 function isLoggedIn(req, res, next) {
     console.log(req.user)
     if(req.user) return next();
-    res.redirect('loginAndRegister');
+    res.redirect('login');
 }
 
 

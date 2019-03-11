@@ -1,61 +1,121 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title></title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="http://v4-alpha.getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><strong><span class="glyphicon glyphicon-stop"></span> Welcome To Dashboard</strong></div>
-            <div class="panel-body">
+    <!-- Carousel  -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="/users"  class="btn btn-danger btn-block"><span class="glyphicon glyphicon-signal"></span><br>Line</a>
-                        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144269/osirisrexview_earthmoon_201817.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption text-left">
+                        <h1>Welcome to Dashboard</h1>
+                        <p>CMS (Client Api)</p>
+                        <p><a class="btn btn-lg btn-info" href="/signup" role="button">Admin Panel »</a></p>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="/pie"  class="btn btn-warning btn-block"><span class="glyphicon glyphicon-cutlery"></span><br>Pei</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="/bar"  class="btn btn-primary btn-block"><span class="glyphicon glyphicon-stats"></span><br>Bar</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="/map"  class="btn btn-success btn-block"><span class="glyphicon glyphicon-map-marker"></span><br>Maps</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="/loginAndRegister "  class="btn btn-info btn-block"><span class="glyphicon glyphicon-user"></span><br>Admin Panel</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
+    </div><!-- /.carousel -->
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-sm">
+                <img class="rounded mx-auto d-block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBbX4DQz325mFPxaR4YkkaRT32FG1i30uV9bGH1xZGDt70oQYD" alt="Generic placeholder image" width="200" height="200">
+                <br>
+                <p class="text-center"><a class="btn btn-danger" href="/line" role="button">View Line »</a></p>
+            </div>
+            <div class="col-sm">
+                <img class="rounded mx-auto d-block" src="https://t4.ftcdn.net/jpg/01/96/91/05/240_F_196910570_0aOv1UgeyMjNvJ03abyIpk1Td993h3kX.jpg" alt="Generic placeholder image" width="200" height="200">
+                <br>
+                <p class="text-center"><a class="btn btn-warning" href="/pie" role="button">View Pie »</a></p>
+            </div>
+            <div class="col-sm">
+                <img class="rounded mx-auto d-block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrdx24gjMuIwZ83gP7Cd_tm9u7HKd43lNqlyjn9fr49-_t_0pH" alt="Generic placeholder image" width="200" height="200">
+                <br>
+                <p class="text-center"><a class="btn btn-primary" href="/bar" role="button">View Bar »</a></p>
+            </div>
+            <div class="col-sm">
+                <img class="rounded mx-auto d-block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7-qIVeMKfo421ZvHkQOW7UDOU8JNV71hPQtps4zeYtLMDICIC" alt="Generic placeholder image" width="200" height="200">
+                <br>
+                <p class="text-center"><a class="btn btn-success" href="/maps" role="button">View Maps »</a></p>
+            </div>
+        </div><!-- /.row -->
+
+        <!-- FOOTER -->
+        <!-- <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>© 2014 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </footer> -->
+
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://v4-alpha.getbootstrap.com/assets/js/vendor/jquery.min.js"></script>')</script>
+<script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="http://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+width="500"
+height="500"
+viewBox="0 0 500 500"
+preserveAspectRatio="none"
+style="
+display: none;
+visibility: hidden;
+position: absolute;
+top: -100%;
+left: -100%;
+"
+>
+<defs>
+    <style type="text/css"></style>
+</defs>
+<text
+x="0"
+y="25"
+style="
+font-weight:bold;
+font-size:25pt;
+font-family:Arial, Helvetica, Open Sans, sans-serif
+"
+>
+500x500
+</text>
+</svg>
 </body>
 </html>

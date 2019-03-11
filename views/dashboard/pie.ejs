@@ -1,0 +1,46 @@
+<% include ../partials/headers %>
+
+<script type="text/javascript">
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    let API_URL ="http://localhost:3000/api/data"
+    const loadData = ()=>{
+        $.ajax({
+            method: "GET",
+            url: API_URL
+        })
+        .done(( getData ) => {
+            let view = [
+                ['Language', 'Speakers (in millions)']
+            ];
+            getData.forEach((item) => {
+                view.push([item.letter, item.frequency])
+
+            })
+            var data = google.visualization.arrayToDataTable(view);
+
+            var options = {
+                legend: 'none',
+                pieSliceText: 'label',
+                title: 'Pie Chart',
+                pieStartAngle: 100,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        });
+    };
+
+    $(document).ready(() => {
+        loadData()
+    })
+
+}
+</script>
+
+<div class="container">
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+</div>
+
+<% include ../partials/footers %>

@@ -57,11 +57,11 @@ module.exports = (passport) => {
                 if (!res.body.error) {
                     return done(null, res.body);
                 } else {
-                    return done(null, false, req.flash('signUpMsg', res.body.message));
+                    return done(null, false, req.flash('signIn', res.body.message));
                 }
             })
             .catch(err => {
-                if (err) return done(null, false, req.flash('signUpMsg', 'Something is wrong, please call your administrator'))
+                if (err) return done(null, false, req.flash('signIn', 'Something is wrong, please call your administrator'))
             })
         });
 

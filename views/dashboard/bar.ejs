@@ -1,0 +1,56 @@
+<% include ../partials/headers %>
+
+<script type="text/javascript">
+google.charts.load("current", {packages:['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+let API_URL ="http://localhost:3000/api/data"
+
+function drawChart() {
+    let API_URL ="http://localhost:3000/api/data"
+
+    $(document).ready(() => {
+        $.ajax({
+            method  : 'GET',
+            url     : API_URL
+        }).done(( getData ) => {
+            let views = [
+                ['Element', 'Value', { role: 'style' }]
+            ];
+
+            getData.forEach((item) => {
+                views.push([item.letter, item.frequency, 'blue'])
+            })
+            console.log(views);
+            var data = google.visualization.arrayToDataTable(views);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                { calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation" },
+                2]);
+
+                var options = {
+                    title: "Bar Chart",
+                    width: '100%',
+                    height: 400,
+                    bar: {groupWidth: "95%"},
+                    legend: { position: "center" },
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                chart.draw(view, options);
+            })
+
+        })
+
+
+    }
+    </script>
+
+    <div class="container">
+        <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+    </div>
+
+    <% include ../partials/footers %>

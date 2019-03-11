@@ -1,25 +1,30 @@
-var express = require('express');
-var router = express.Router();
+const request = require('superagent');
+const API_URL = 'http://localhost:3000/api/';
 
-/* GET users listing. */
-router.get('/', (req, res) => {
-    res.render('users/list')
-});
 
-router.get('/home', (req, res) => {
-    res.render('users/list')
-});
+module.exports = (app) => {
 
-router.get('/data', (req, res) => {
-    res.render('users/listData')
-});
+    app.get('/', (req, res) => {
+        res.render('users/list')
+    });
 
-router.get('/dataDate', (req, res) => {
-    res.render('users/listDataDate')
-});
+    app.get('/home', (req, res) => {
+        res.render('users/list')
+    });
 
-router.get('/maps', (req, res) => {
-    res.render('users/listMaps')
-});
+    app.get('/data', (req, res) => {
+        console.log(req.user)
+        res.render('users/data', { user : req.user})
+    });
 
-module.exports = router;
+    app.get('/dataDate', (req, res) => {
+
+
+
+        res.render('users/listDataDate')
+    });
+
+    app.get('/maps', (req, res) => {
+        res.render('users/listMaps')
+    });
+};

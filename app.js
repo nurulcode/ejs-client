@@ -10,7 +10,6 @@ const logger = require('morgan');
 const passport = require('passport');
 const request = require('superagent');
 
-const usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -33,7 +32,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./models/passport')(passport);
-require('./routes/index')( app, passport);
+require('./routes/index')(app, passport);
+require('./routes/users')(app);
+require('./routes/dashboards')(app);
 
 
 module.exports = app;
