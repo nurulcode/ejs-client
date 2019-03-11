@@ -1,6 +1,6 @@
 'use strict';
-
-module.exports = (app, passport) => {
+const helpers    = require('../helpers/util');
+module.exports = (app, passport, request) => {
     //Dashboard
     app.get('/', (req, res, next) => {
         res.render('index');
@@ -29,22 +29,28 @@ module.exports = (app, passport) => {
         failureFlash    : true
     }));
 
-    app.get('/home', isLoggedIn, (req, res) => {
+    app.get('/home', helpers.isLoggedIn, (req, res) => {
         res.render('home', { user : req.user});
     });
 
-    app.get('/logout', isLoggedIn, function(req, res){
+    app.get('/logout', helpers.isLoggedIn, function(req, res){
+        // console.log(req.user)
+
+
+
+        request
+        .get('http://localhost:3000/api/users/destroy')
+        .send({email: req.user.data.email})
+        .then(res => {
+            console.log(res.body.logout)
+        }).catch( err => console.log(err))
+
         req.logout();
         res.redirect('/');
+
     });
 
 };
-
-function isLoggedIn(req, res, next) {
-    console.log(req.user)
-    if(req.user) return next();
-    res.redirect('login');
-}
 
 
 //

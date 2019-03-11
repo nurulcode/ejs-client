@@ -9,6 +9,8 @@ const session = require('express-session');
 const logger = require('morgan');
 const passport = require('passport');
 const request = require('superagent');
+var moment = require('moment');
+
 
 
 var app = express();
@@ -32,8 +34,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./models/passport')(passport);
-require('./routes/index')(app, passport);
-require('./routes/users')(app);
+require('./routes/index')(app, passport, request);
+require('./routes/users')(app, moment);
 require('./routes/dashboards')(app);
 
 

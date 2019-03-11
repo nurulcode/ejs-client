@@ -1,0 +1,57 @@
+<% include ../partials/headers %>
+
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+        let API_URL ="http://localhost:3000/api/datadate/"
+        const loadData = ()=>{
+            $.ajax({
+                method: "GET",
+                url: API_URL
+            })
+            .done(( getData ) => {
+                let view = [
+
+                ];
+                getData.forEach((item, index) => {
+                    let date = new Date(item.letter)
+                    let tahun = date.getFullYear()
+                    let bulan = date.getMonth()
+                    view.push([`${tahun}`, item.frequency])
+                })
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'X');
+                data.addColumn('number', 'Dogs');
+                data.addRows(view);
+
+                var options = {
+                    hAxis: {
+                        title: 'Time'
+                    },
+                    vAxis: {
+                        title: 'Popularity'
+                    }
+                }
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            })
+        };
+
+        $(document).ready(() => {
+            loadData()
+        })
+
+    };
+</script>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">Header</div>
+        <div id="chart_div" style="width: 100%; height: 1000px;" ></div>
+        <div class="card-footer">Footer</div>
+    </div>
+
+    <% include ../partials/footers %>
